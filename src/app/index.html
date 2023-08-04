@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Journal</title>
     <link
       href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap"
@@ -14,7 +15,8 @@
       <div class="holder headline title"><h1>Weather Journal App</h1></div>
       <div class="cardLeft">
         <div class="card">
-          <div class="holder zip">
+          <div class="holder city">
+            <!-- used city name instead of zip code for easier usability-->
             <label for="city">Enter City here</label>
             <input type="text" id="city" placeholder="enter city name here" />
           </div>
@@ -28,21 +30,24 @@
               cols="50"
             ></textarea>
             <div class="buttonLocation">
-            <button id="generate">Generate</button>
-          </div>
+              <button id="generate">Generate</button>
+            </div>
           </div>
         </div>
       </div>
       <div class="cardRight">
         <div class="card">
-      <div class="holder entry">
-        <div class="title">Most Recent Entry</div>
-        <div id="entryHolder">
-          <div id="date"></div>
-          <div id="temp"></div>
-          <div id="content"></div>
+          <div class="holder entry">
+            <div class="title">Most Recent Entry</div>
+            <div id="entryHolder">
+              <div id="date"></div>
+              <br />
+              <div id="temp"></div>
+              <br />
+              <div id="content"></div>
+            </div>
+          </div>
         </div>
-      </div>
       </div>
     </div>
     <script src="app.js" type="text/javascript"></script>

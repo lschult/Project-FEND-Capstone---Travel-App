@@ -6,41 +6,32 @@ const port = 8000;
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+//Path module set up to be used with the join() method in order to initiate the main project folder later on
 const path = require("path");
 
-// Start up an instance of app
+// Start up an instance of app using express
 const app = express();
 
-/* Middleware*/
-// Here we are configuring express to use body-parser as middle-ware.
+// Configuration of express, utliizing body-parser as the middle-ware.
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Cors for cross origin allowance
+// Cross origin allowance using Cors
 app.use(cors());
-// Initialize the main project folder
+
+// Main project folder initialized, using the join() method and path module
 app.use("/app", express.static(path.join(__dirname, "app")));
 
-// Get route to return all entries
+// Get api data
 app.get("/api/weather-journal", (req, res) => {
   console.log("get data");
   res.json(projectData);
 });
 
-// app.get("/api/weather-journal/latest", (req, res) => {
-//   console.log("get latest value");
-
-//   const ids = Object.keys(projectData);
-//   const maxId = Math.max(...ids);
-
-//   res.json(projectData[maxId]);
-// });
-
 // POST route to add entry in weather journal
 app.post("/api/weather-journal", (req, res) => {
   console.log("post data");
   const data = req.body;
-  // TODO: validate data - error response
 
   const id = Object.keys(projectData).length + 1;
   const journalData = {
@@ -49,15 +40,9 @@ app.post("/api/weather-journal", (req, res) => {
   };
 
   projectData[id] = journalData;
-
-  //   res.send(projectData);
-  // temperature, date, user resposne
+  // temperature, date, user response
   res.json(journalData);
 });
-
-// function tempValid(tem) {
-//   // is it a number? range of numbers
-// }
 
 // Start Server
 app.listen(port, () => {

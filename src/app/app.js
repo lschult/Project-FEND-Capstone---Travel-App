@@ -3,8 +3,12 @@ const weatherKey = "b122a4f05f463e875757670cc3174f1a";
 const weatherAPI = "https://api.openweathermap.org/data/2.5/weather";
 const journalAPI = "http://localhost:8000/api/weather-journal";
 
+// eventlistener when user clicks button
 const button = document.getElementById("generate");
 button.addEventListener("click", submitJournalEntry);
+
+// get input values from user
+// used city name instead of zip code for easier usability
 
 function submitJournalEntry() {
   const city = getInputValueById("city");
@@ -18,6 +22,7 @@ function getInputValueById(id) {
   return value;
 }
 
+// save user input and api data
 async function saveJournalEntry(city, feeling) {
   try {
     const weatherData = await getWeatherData(city);
@@ -38,6 +43,7 @@ async function saveJournalEntry(city, feeling) {
   }
 }
 
+// get weather data from open weather api server using url
 async function getWeatherData(city) {
   const metrics = "metric";
   const url = `${weatherAPI}?q=${city}&units=${metrics}&APPID=${weatherKey}`;
@@ -56,18 +62,18 @@ async function getWeatherData(city) {
   }
 }
 
+// save data to weather journal
 async function saveDataToWeatherJournal(data) {
   try {
     const response = await fetch(journalAPI, {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-      mode: "cors", // no-cors, *cors, same-origin
-      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: "same-origin", // include, *same-origin, omit
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
       headers: {
         "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify(data), // body data type must match "Content-Type" header
+      body: JSON.stringify(data),
     });
     return response.json();
   } catch (error) {
@@ -75,12 +81,13 @@ async function saveDataToWeatherJournal(data) {
   }
 }
 
+// function to make date readable
 function readableDate(date) {
   const newDate = new Date(date).toLocaleDateString();
-
   return newDate;
 }
 
+// dynamically update entry with new input/data
 function updateRecentEntry(data) {
   document.getElementById(
     "temp"
@@ -90,20 +97,3 @@ function updateRecentEntry(data) {
   )}`;
   document.getElementById("content").textContent = `Feeling: ${data.feeling}`;
 }
-
-/**
- * this function can be used to fetch all the records
- */
-// async function getWeatherJournalData(data) {
-//   const response = await fetch(journalAPI, {
-//     mode: "cors", // no-cors, *cors, same-origin
-//     cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-//     credentials: "same-origin", // include, *same-origin, omit
-//     headers: {
-//       "Content-Type": "application/json",
-//       // 'Content-Type': 'application/x-www-form-urlencoded',
-//     },
-//     body: JSON.stringify(data), // body data type must match "Content-Type" header
-//   });
-//   return response.json();
-// }
