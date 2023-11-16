@@ -1,0 +1,85 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: $blue-grey-900;
+  background: $blue-grey-050;
+  font-family: "Poppins", sans-serif;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+main {
+  flex: 2;
+}
+
+section.hero {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  background: url("/images/hero-lighthouse.jpg") center 25% / cover no-repeat;
+  height: 240px;
+  position: relative;
+  z-index: 1;
+  & h2 {
+    color: $white;
+    z-index: 100;
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 0 15px;
+  }
+}
+
+@media (min-width: 720px) {
+  section.hero {
+    height: 320px;
+    & h2 {
+      font-size: 40px;
+    }
+  }
+}
+
+section.search,
+section.results,
+section.saved-trips {
+  max-width: 960px;
+  margin: 50px auto;
+  padding: 0 30px;
+}
+
+input[type="text"],
+input[type="date"] {
+  width: 100%;
+  max-width: 100%;
+  font-size: 18px;
+  line-height: 1;
+  padding: 15px 20px;
+  margin-bottom: 0;
+  border: 2px solid $blue-grey-200;
+  border-radius: 3px;
+  &.error {
+    border: 2px solid $red-400;
+  }
+}
+
+.btn {
+  width: 100%;
+  padding: 15px 20px;
+  border-radius: 3px;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 1;
+  transition: all ease 0.25s;
+  &:hover {
+    cursor: pointer;
+  }
+}
