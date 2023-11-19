@@ -1,17 +1,21 @@
-#app-main {
-  margin-top: 16vh;
-  margin-bottom: 120px;
+#tripsHistory {
   display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 190px 1fr;
-  row-gap: 20px;
-  height: 100%;
-  overflow: visible;
-  padding: 5px 10px;
+  grid: auto / 1fr;
+  gap: 30px;
 }
 
-@media (min-width: 290px) {
-  #app-main {
-    padding: 10px 0;
+@media (min-width: 480px) {
+  #tripsHistory {
+    display: grid;
+    grid: auto / 1fr 1fr;
+    gap: 30px;
+  }
+}
+
+@media (min-width: 768px) {
+  #tripsHistory {
+    display: grid;
+    grid: auto / 1fr 1fr 1fr;
+    gap: 30px;
   }
 }

@@ -17,14 +17,14 @@ module.exports = {
   // https://webpack.js.org/configuration/dev-server/#devserverproxy
   devServer: {
     proxy: {
-      "/geo-name-locations": "http://localhost:8081",
-      "/weather-bit-forecast": "http://localhost:8081",
-      "/pixabay-images": "http://localhost:8081",
+      "/geonames-places": "http://localhost:8081",
+      "/future-weather": "http://localhost:8081",
+      "/pixabay-photos": "http://localhost:8081",
       "/save-trip": "http://localhost:8081",
-      "/get-saved-trips": "http://localhost:8081",
-      "/remove-saved-trip": "http://localhost:8081",
-      "/save-search-result": "http://localhost:8081",
-      "/get-search-result": "http://localhost:8081",
+      "/trips-history": "http://localhost:8081",
+      "/delete-trip": "http://localhost:8081",
+      "/add-search-favorite": "http://localhost:8081",
+      "/result-of-search": "http://localhost:8081",
     },
   },
   devtool: "source-map",

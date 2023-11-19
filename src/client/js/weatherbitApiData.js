@@ -6,7 +6,7 @@ const fetchWeatherbitData = async (daysUntil, lat, lon) => {
     BASE_URL: `https://api.weatherbit.io/v2.0/forecast/${formatOfForecast}?lat=${lat}&lon=${lon}`,
   };
 
-  const weatherResponse = await fetch("/weather-bit-forecast", {
+  const weatherResponse = await fetch("/future-weather", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

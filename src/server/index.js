@@ -39,16 +39,16 @@ app.listen(port, () => {
 });
 
 app.get("/", storeController.homePage);
-app.post("/geo-name-locations", storeController.geoNameLocations);
-app.post("/weather-bit-forecast", storeController.weatherBitForecast);
-app.post("/pixabay-images", storeController.pixabayImages);
+app.post("/geonames-places", storeController.geoNameLocations);
+app.post("/future-weather", storeController.weatherBitForecast);
+app.post("/pixabay-photos", storeController.pixabayImages);
 
-app.post("/save-search-result", (req, res) => {
+app.post("/add-search-favorite", (req, res) => {
   projectData = req.body;
   res.send(projectData);
 });
 
-app.get("/get-search-result", (req, res) => {
+app.get("/result-of-search", (req, res) => {
   res.json(projectData);
 });
 
@@ -58,11 +58,11 @@ app.post("/save-trip", (req, res) => {
   res.send(trip);
 });
 
-app.get("/get-saved-trips", (req, res) => {
+app.get("/trips-history", (req, res) => {
   res.json(savedTrips);
 });
 
-app.post("/remove-saved-trip", (req, res) => {
+app.post("/delete-trip", (req, res) => {
   const tripId = req.body.id;
 
   savedTrips = savedTrips.filter((savedTrip) => {

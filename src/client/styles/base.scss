@@ -20,11 +20,11 @@ main {
   flex: 2;
 }
 
-section.hero {
+section.user-hero {
   display: grid;
   align-content: center;
   justify-content: center;
-  background: url("/images/hero-lighthouse.jpg") center 25% / cover no-repeat;
+  // background: url("") center 25% / cover no-repeat;
   height: 240px;
   position: relative;
   z-index: 1;
@@ -39,7 +39,7 @@ section.hero {
 }
 
 @media (min-width: 720px) {
-  section.hero {
+  section.user-hero {
     height: 320px;
     & h2 {
       font-size: 40px;

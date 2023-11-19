@@ -3,7 +3,7 @@ const fetchGeonamesData = async (destination) => {
     BASE_URL: `http://api.geonames.org/searchJSON?formatted=true&q=${destination}`,
   };
 
-  const responseGeonames = await fetch("/geo-name-locations", {
+  const responseGeonames = await fetch("/geonames-places", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

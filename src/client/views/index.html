@@ -16,16 +16,16 @@
   </head>
   <body>
     <header>
-      <div class="logo-text">Travel App</div>
+      <div class="app-text">Travel App</div>
     </header>
     <main>
-      <section class="hero">
+      <section class="user-hero">
         <h2>Where am you going to next?</h2>
       </section>
 
       <section class="search">
-        <form class="search-form" onsubmit="return Client.handleSubmit(event)">
-          <label class="search-form__destination" for="destination"
+        <form class="search-input" onsubmit="return Client.handleSubmit(event)">
+          <label class="search-input__destination" for="destination"
             >Next Destination
             <input
               id="destination"
@@ -36,17 +36,17 @@
               required
             />
           </label>
-          <label class="search-form__departure-date" for="departureDate"
+          <label class="search-input__departure-date" for="date-to-leave"
             >Departure Date
             <input
-              id="departureDate"
+              id="date-to-leave"
               type="date"
-              name="departureDate"
+              name="date-to-leave"
               required
             />
           </label>
           <input
-            class="btn search-form__btn-search"
+            class="btn search-input__search-button"
             type="submit"
             name=""
             value="Search"
@@ -54,10 +54,10 @@
         </form>
       </section>
       <section class="results">
-        <div id="tripInfo"></div>
+        <div id="tripDetails"></div>
       </section>
       <section class="saved-trips">
-        <div id="savedTripsSection"></div>
+        <div id="tripsHistory"></div>
       </section>
     </main>
     <footer>
