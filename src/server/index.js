@@ -2,7 +2,7 @@ const express = require("express");
 var bodyParser = require("body-parser");
 var cors = require("cors");
 
-const storeController = require("../controllers/storeController");
+const projectController = require("../controllers/projectController");
 
 const app = express();
 const port = 8081;
@@ -11,7 +11,7 @@ const port = 8081;
 let projectData = {};
 
 // An array that will contain saved trips as objects
-let savedTrips = [];
+let favoriteTrips = [];
 
 app.use(cors());
 // to use json
@@ -38,10 +38,10 @@ app.listen(port, () => {
   }
 });
 
-app.get("/", storeController.homePage);
-app.post("/geonames-places", storeController.geoNameLocations);
-app.post("/future-weather", storeController.weatherBitForecast);
-app.post("/pixabay-photos", storeController.pixabayImages);
+app.get("/", projectController.homePage);
+app.post("/geonames-places", projectController.geoNameLocations);
+app.post("/future-weather", projectController.weatherBitForecast);
+app.post("/pixabay-photos", projectController.pixabayImages);
 
 app.post("/add-search-favorite", (req, res) => {
   projectData = req.body;
@@ -52,24 +52,24 @@ app.get("/result-of-search", (req, res) => {
   res.json(projectData);
 });
 
-app.post("/save-trip", (req, res) => {
+app.post("/favorite-trip", (req, res) => {
   const trip = { ...req.body };
-  savedTrips.push(trip);
+  favoriteTrips.push(trip);
   res.send(trip);
 });
 
-app.get("/trips-history", (req, res) => {
-  res.json(savedTrips);
+app.get("/see-trips-history", (req, res) => {
+  res.json(favoriteTrips);
 });
 
 app.post("/delete-trip", (req, res) => {
   const tripId = req.body.id;
 
-  savedTrips = savedTrips.filter((savedTrip) => {
+  favoriteTrips = favoriteTrips.filter((savedTrip) => {
     return savedTrip.id != tripId;
   });
 
-  res.json(savedTrips);
+  res.json(favoriteTrips);
 });
 
 module.exports = app;

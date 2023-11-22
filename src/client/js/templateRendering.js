@@ -1,7 +1,7 @@
 // This function will render the trips details in a card format
 // Styling will be different for saved trips and the trip search result, this can be set using the save parameter
 const templateRendering = (
-  destinationImage,
+  locationImage,
   destination,
   daysUntil,
   weatherData,
@@ -10,7 +10,7 @@ const templateRendering = (
 ) => {
   return `
         <div class="card__image">
-            <img src="${destinationImage}">
+            <img src="${locationImage}">
         </div>
         <div class="card__body">
             <div class="card__text">

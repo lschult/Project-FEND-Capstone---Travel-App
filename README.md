@@ -22,7 +22,7 @@ This project consists of 5 distinct files:
 
 - app/index.html
 
-- app/app.js
+- app/index.js
 
 - app/style.css
 

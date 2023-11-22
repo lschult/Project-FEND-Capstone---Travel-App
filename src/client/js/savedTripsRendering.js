@@ -2,11 +2,11 @@
 // Then render any trips to the UI using the renderHTMLTemplate function
 const savedTripsRendering = () => {
   // Retrieve the object from storage
-  const localStorageSavedTrips = JSON.parse(localStorage.getItem("savedTrips"));
+  const storedFavoriteTrips = JSON.parse(localStorage.getItem("favoriteTrips"));
 
-  if (localStorageSavedTrips != null) {
+  if (storedFavoriteTrips != null) {
     let documentFragment = new DocumentFragment();
-    for (let localStorageSavedTrip of localStorageSavedTrips) {
+    for (let localStorageSavedTrip of storedFavoriteTrips) {
       const cardElement = document.createElement("div");
       cardElement.classList.add("card", "card--column");
 

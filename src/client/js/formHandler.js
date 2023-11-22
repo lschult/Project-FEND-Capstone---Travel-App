@@ -60,10 +60,10 @@ const handleSubmit = async (event) => {
     );
     //  render the returned result in the UI
     //  placeholder image
-    let destinationImage = "images/placeholder.jpg";
-    // If we have an image from Pixabay then set this as the destinationImage instead
+    let locationImage = ""; //add placeholder Image
+    // If we have an image from Pixabay then set this as the locationImage instead
     if (searchResult.dataPixabay.webformatURL) {
-      destinationImage = searchResult.dataPixabay.webformatURL;
+      locationImage = searchResult.dataPixabay.webformatURL;
     }
     // Pass the search results to the render function, this will render them in the UI in a card style component
     const innerCard = Client.templateRendering(
@@ -86,27 +86,26 @@ const handleSubmit = async (event) => {
 
 async function saveTrip() {
   try {
-    const savedTrips = await getSavedTrips();
+    const favoriteTrips = await getSavedTrips();
     const searchResult = await getSearchResult();
     // Check if the trip has alread been saved
     const isTripAlreadySaved = isTripSaved(searchResult.id, savedTrips);
 
     if (!isTripAlreadySaved) {
-      const savedTrip = await postProjectdata("/save-trip", searchResult);
+      const savedTrip = await postProjectdata("/favorite-trip", searchResult);
       // Put the object into storage
       const updatedSavedTrips = await getSavedTrips();
-      localStorage.setItem("savedTrips", JSON.stringify(updatedSavedTrips));
+      localStorage.setItem("favoriteTrips", JSON.stringify(updatedSavedTrips));
 
       // Set the HTML
       const daysUntil = Client.calculateDaysUntil(savedTrip.date - to - leave);
-      const destinationImage =
-        savedTrip.dataPixabay.webformatURL || "images/placeholder.jpg";
+      const locationImage = savedTrip.dataPixabay.webformatURL || ""; //add placeholder image
 
       const cardElement = document.createElement("div");
       cardElement.classList.add("card", "card--column");
 
       cardElement.innerHTML = Client.templateRendering(
-        destinationImage,
+        locationImage,
         savedTrip.destination,
         daysUntil,
         savedTrip.weatherData,
@@ -130,10 +129,10 @@ async function removeTrip(event) {
 
     tripCard.remove();
 
-    const savedTrips = await getSavedTrips();
+    const favoriteTrips = await getSavedTrips();
 
     // Update local storage
-    localStorage.setItem("savedTrips", JSON.stringify(savedTrips));
+    localStorage.setItem("favoriteTrips", JSON.stringify(favoriteTrips));
   } catch (error) {
     console.error(error);
   }
@@ -151,9 +150,9 @@ const getSearchResult = async () => {
 
 async function getSavedTrips() {
   try {
-    const response = await fetch("/trips-history");
-    const savedTrips = await response.json();
-    return savedTrips;
+    const response = await fetch("/see-trips-history");
+    const favoriteTrips = await response.json();
+    return favoriteTrips;
   } catch (error) {
     console.error(error);
     return [];
@@ -175,9 +174,9 @@ const postProjectData = async (url = "", data = {}) => {
   }
 };
 
-const isTripSaved = (tripToSaveID, savedTrips) => {
-  if (savedTrips.length !== 0) {
-    for (let trip of savedTrips) {
+const isTripSaved = (tripToSaveID, favoriteTrips) => {
+  if (favoriteTrips.length !== 0) {
+    for (let trip of favoriteTrips) {
       if (trip.dataGeonames.geonameId === tripToSaveID) {
         return true;
       }
