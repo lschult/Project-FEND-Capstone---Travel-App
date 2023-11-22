@@ -12,11 +12,11 @@
       src="https://kit.fontawesome.com/aca2d893d4.js"
       crossorigin="anonymous"
     ></script>
-    <title>Travel App</title>
+    <title>My Travel Planner</title>
   </head>
   <body>
     <header>
-      <div class="app-text">Travel App</div>
+      <div class="app-text">My Travel Planner</div>
     </header>
     <main>
       <section class="user-hero">
@@ -36,32 +36,27 @@
               required
             />
           </label>
-          <label class="search-input__departure-date" for="date-to-leave"
-            >Departure Date
-            <input
-              id="date-to-leave"
-              type="date"
-              name="date-to-leave"
-              required
-            />
+          <label class="search-input_day-leaving" for="Day Leaving"
+            >Day Leaving
+            <input id="Day Leaving" type="date" name="Day Leaving" required />
           </label>
           <input
             class="btn search-input__search-button"
             type="submit"
             name=""
-            value="Search"
+            value="input"
           />
         </form>
       </section>
-      <section class="results">
+      <section class="results-section">
         <div id="tripDetails"></div>
       </section>
-      <section class="saved-trips">
+      <section class="fav-trips">
         <div id="tripsHistory"></div>
       </section>
     </main>
     <footer>
-      <p>Travel App &copy;</p>
+      <p>My Travel Planner</p>
     </footer>
     <script>
       // Check that service workers are supported

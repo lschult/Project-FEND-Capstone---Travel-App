@@ -3,7 +3,7 @@
 const templateRendering = (
   destinationImage,
   destination,
-  daysToGo,
+  daysUntil,
   weatherData,
   savedTripId,
   save = true
@@ -14,12 +14,8 @@ const templateRendering = (
         </div>
         <div class="card__body">
             <div class="card__text">
-                ${
-                  save
-                    ? "<h2>" + destination + "</h2>"
-                    : "<h4>" + destination + "</h4>"
-                }
-                <p>Your trip is in ${daysToGo} days time</p>
+                ${save ? "<h2>" + +"</h2>" : "<h4>" + destination + "</h4>"}
+                <p>Your trip is in ${daysUntil} days time</p>
             </div>
             <div class="card__weather">
                 <div class="card__weather--icon">

@@ -14,7 +14,7 @@
     margin-bottom: 15px;
   }
   &__destination,
-  &__departure-date {
+  &_day-leaving {
     flex: 1 1 auto;
     & input {
       margin-top: 4px;
@@ -48,7 +48,7 @@
       flex: 1 1 50%;
       max-width: 50%;
     }
-    &__departure-date {
+    &_day-leaving {
       flex: 1 1 30%;
       max-width: 30%;
     }

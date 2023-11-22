@@ -11,14 +11,14 @@ const savedTripsRendering = () => {
       cardElement.classList.add("card", "card--column");
 
       // Calcuate the number of days to go
-      const daysToGo = Client.calculateDaysToGo(
-        localStorageSavedTrip.date - to - leave
+      const daysUntil = Client.calculatedaysUntil(
+        localStorageSavedTrip.dateToLeave
       );
 
       cardElement.innerHTML = Client.templateRendering(
         localStorageSavedTrip.pixabayData.webformatURL,
         localStorageSavedTrip.destination,
-        daysToGo,
+        daysUntil,
         localStorageSavedTrip.weatherData,
         localStorageSavedTrip.id,
         false

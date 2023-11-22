@@ -11,7 +11,7 @@ const handleSubmit = async (event) => {
   // Get destination and leaving date formsFields
 
   const destination = document.getElementById("destination");
-  const dateToLeave = document.getElementById("date-to-leave");
+  const dateToLeave = document.getElementById("Day Leaving");
 
   // Validate the form
   const formElements = [destination, dateToLeave];
@@ -149,21 +149,30 @@ const getSearchResult = async () => {
   }
 };
 
-const getSavedTrips = async () => {
-  const response = await fetch("/trips-history");
-  const savedTrips = await response.json();
-  return savedTrips;
-};
+async function getSavedTrips() {
+  try {
+    const response = await fetch("/trips-history");
+    const savedTrips = await response.json();
+    return savedTrips;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
 
-const postProjectdata = async (url = "", data = {}) => {
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-  return response.json();
+const postProjectData = async (url = "", data = {}) => {
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    return response.json();
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const isTripSaved = (tripToSaveID, savedTrips) => {
