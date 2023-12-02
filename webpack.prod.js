@@ -8,11 +8,11 @@ const WorkboxPlugin = require("workbox-webpack-plugin");
 
 module.exports = {
   entry: "./src/client/index.js",
+  mode: "production",
   output: {
     libraryTarget: "var",
     library: "Client",
   },
-  mode: "production",
   module: {
     rules: [
       {
@@ -22,7 +22,12 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        use: [
+          MiniCssExtractPlugin.loader,
+          "style-loader",
+          "css-loader",
+          "sass-loader",
+        ],
       },
     ],
   },
@@ -30,12 +35,6 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: "./src/client/views/index.html",
       filename: "./index.html",
-    }),
-    new CopyPlugin({
-      patterns: [
-        { from: "src/client/icons", to: "icons" },
-        { from: "src/client/images", to: "images" },
-      ],
     }),
     new CleanWebpackPlugin({
       // Simulate the removal of files

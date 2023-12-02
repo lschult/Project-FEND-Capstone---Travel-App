@@ -6,12 +6,13 @@ const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   entry: "./src/client/index.js",
+  mode: "development",
+  devtool: "source-map",
   output: {
     libraryTarget: "var",
     library: "Client",
     publicPath: "/",
   },
-  mode: "development",
   devServer: {
     proxy: {
       "/geonames-places": "http://localhost:8081",
@@ -24,17 +25,12 @@ module.exports = {
       "/result-of-search": "http://localhost:8081",
     },
   },
-  devtool: "source-map",
   module: {
     rules: [
       {
         test: "/.js$/",
         exclude: /node_modules/,
         loader: "babel-loader",
-      },
-      {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.scss$/,
@@ -48,9 +44,12 @@ module.exports = {
       filename: "./index.html",
     }),
     new Dotenv(),
-    new CleanWebpackPlugin({
-      dry: false,
+    ew CleanWebpackPlugin({
+      // Simulate the removal of files
+      dry: true,
+      // Write Logs to Console
       verbose: true,
+      // Automatically remove all unused webpack assets on rebuild
       cleanStaleWebpackAssets: true,
       protectWebpackAssets: false,
     }),

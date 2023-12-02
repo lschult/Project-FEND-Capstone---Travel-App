@@ -35,7 +35,7 @@ const templateRendering = (
                 type="button"
                 data-trip-id="${savedTripId}"
                 onclick="return ${
-                  save ? "Client.saveTrip()" : "Client.removeTrip()"
+                  save ? "Client.addFavoriteTrip()" : "Client.deleteTrip()"
                 }">
                     ${
                       save

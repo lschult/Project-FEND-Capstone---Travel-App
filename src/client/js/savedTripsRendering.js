@@ -6,7 +6,7 @@ const savedTripsRendering = () => {
 
   if (storedFavoriteTrips != null) {
     let documentFragment = new DocumentFragment();
-    for (let localStorageSavedTrip of storedFavoriteTrips) {
+    for (let localStorageFavoriteTrip of storedFavoriteTrips) {
       const cardElement = document.createElement("div");
       cardElement.classList.add("card", "card--column");
 
@@ -16,11 +16,11 @@ const savedTripsRendering = () => {
       );
 
       cardElement.innerHTML = Client.templateRendering(
-        localStorageSavedTrip.pixabayData.webformatURL,
-        localStorageSavedTrip.destination,
+        localStorageFavoriteTrip.pixabayData.webformatURL,
+        localStorageFavoriteTrip.destination,
         daysUntil,
-        localStorageSavedTrip.weatherData,
-        localStorageSavedTrip.id,
+        localStorageFavoriteTrip.weatherData,
+        localStorageFavoriteTrip.id,
         false
       );
 
